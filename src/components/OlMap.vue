@@ -1,4 +1,4 @@
-<template>
+<template>    
     <div ref="mapContainer" class="map-container"></div>
 </template>
 
@@ -39,30 +39,33 @@ export default {
         }
     },
     async beforeMount() {
-        // Check if mapLayers and mapDatasets are empty
-        this.$store.dispatch('fetchSearchFeatures');
-        this.$store.dispatch('fetchFilterFeatures');
-        if (this.$store.state.mapLayers.length === 0 && this.$store.state.mapDatasets.length === 0) {
+        // Destructure for cleaner access to dispatch and state
+        const { dispatch, state, commit } = this.$store;
+
+        // Use dispatch directly from destructured store
+        await dispatch('fetchSearchFeatures');
+        await dispatch('fetchFilterFeatures');
+
+        if (state.mapLayers.length === 0 && state.mapDatasets.length === 0) {
             // Fetch the default map
-            let maps = await this.$store.dispatch('fetchMaps');
+            let maps = await dispatch('fetchMaps');
             let defaultMap = maps.find(map => map.title === "Zonificación Urbana de Maracaibo");
             if (defaultMap) {
-                this.$store.commit('setSelectedMap', defaultMap);
-                await this.$store.dispatch('fetchDatasets');
+                commit('setSelectedMap', defaultMap);
+                await dispatch('fetchDatasets');
             }
         }
-
     },
     computed: {
-        ...mapState(['mapLayers', 'mapLocation', 'markedCoordinate', 'tracedFeature']),
+        ...mapState(['mapLayers', 'mapLocation', 'markedCoordinate', 'tracedFeature', 'features']),
         sortedMapLayers() {
             return [...this.mapLayers].sort((a, b) => a.order - b.order);
-        }
+        },
     },
     watch: {
         mapLayers: {
             handler(newMapLayers) {
-                newMapLayers.forEach((layer) => {
+                newMapLayers.forEach(layer => {
                     const olLayer = this.map.getLayers().getArray().find(olLayer => olLayer.get('pk') === layer.pk);
                     if (olLayer) {
                         olLayer.setOpacity(layer.opacity);
@@ -70,25 +73,27 @@ export default {
                     }
                 });
             },
-            deep: true  // Watch for nested changes
+            deep: true,
         },
         markedCoordinate(newVal, oldVal) {
-            // check if the new value is different from the old value
-            if (newVal !== oldVal) {
-                // Clear the vector source
-                this.vectorSource.clear();
+            // Direct comparison might be unnecessary if Vue guarantees this watcher is only triggered on actual changes.
+            // However, if you want to ensure there's a significant change (e.g., beyond a minor floating-point difference), you might keep it.
+            console.log('Watcher triggered:', newVal, oldVal); // Debugging log
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+                this.vectorSource.clear(); // Clear the vector source
+
+                // Destructure the newVal array for clarity
+                const [newX, newY] = newVal;
 
                 // Convert the new coordinate to longitude/latitude and then to EPSG:3758
-                const lonLat = converter2202to4326.forward([newVal[0], newVal[1]]);
+                const lonLat = converter2202to4326.forward([newX, newY]);
                 const coord = fromLonLat(lonLat);
-                //console.log(coord);
 
-                // Create a new feature with a point geometry at the new coordinates
+                // Create and add a new feature with a point geometry at the new coordinates
                 const feature = new Feature({
-                geometry: new Point(coord)
+                    geometry: new Point(coord)
                 });
 
-                // Add the feature to the vector source
                 this.vectorSource.addFeature(feature);
 
                 // Zoom to the new coordinates

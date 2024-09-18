@@ -1,38 +1,35 @@
 <template>
-  <div class="home d-flex flex-column">
-    <MapCatalog :maps="maps" />
-  </div>
+  <MapCatalog />
+  <v-footer app class="d-flex flex-column pa-0 ma-0 bg-primary on-primary">
+    <v-container fluid>
+      <v-row justify="center" no-gutters>
+        <p>&copy; {{ new Date().getFullYear() }} | <strong><a href="https://www.geostudio.com.co/"> GeoStudio </a></strong> | Alcaldía de Maracaibo</p>
+      </v-row>
+    </v-container>
+  </v-footer>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { defineComponent } from 'vue';
 import MapCatalog from '@/components/MapCatalog.vue';
 
-export default {
+export default defineComponent({
   name: 'HomeView',
   components: {
     MapCatalog,
   },
-  computed: {
-    ...mapState(['maps']),
-  },
-  mounted() {
-    this.$store.dispatch('fetchMaps');
-  },
-  beforeRouteEnter(to, from, next) {
-  next(vm => {
-    vm.$store.commit('clearSelectedMap');
-  });
-},
-  // props, data, methods...
-};
+});
 </script>
 
 <style scoped>
-.home {
-  flex-grow: 1;
-  height: calc(100vh - 64px);
-  width: 100%;
-  position: relative;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-footer {
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
 }
 </style>

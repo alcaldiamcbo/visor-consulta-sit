@@ -20,29 +20,7 @@
             </v-row>
         </div>
         <div class="map-cards">
-            <v-row>
-                <v-col cols="12" md="12">
-                    <v-card v-for="map in maps" :key="map.id" variant="outlined" class="mx-auto bg-white on-secondary  rounded-xl pa-5" max-width="900">
-                        <v-card-item>
-                            <div class="text-overline mb-1" color="accent">
-                                Mapa | {{ map.attribution }}
-                            </div>
-                        </v-card-item>
-                        <v-divider></v-divider>
-                        <v-img :src="map.thumbnail_url" class="map-thumbnail" cover></v-img>
-                        <v-card-title class="text-h6 mb-1">{{ map.title }}</v-card-title>
-                        <v-card-text class="text-caption" color="accent">{{ map.raw_purpose }}</v-card-text>
-                        <!-- card content... -->
-                        <v-divider></v-divider>
-                        <v-card-actions class="d-flex justify-space-between">
-                            <v-btn color="accent" @click="goToMapView(map.pk)">Ver mapa</v-btn>
-                            <v-btn icon @click="openDetails(map.detail_url)">
-                                <v-icon color="error">mdi-information</v-icon>
-                            </v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-col>
-            </v-row>
+            <CatalogComponent />
         </div>
         <div class="features-container">
             <div class="features">
@@ -102,14 +80,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import CatalogComponent from '@/components/CatalogComponent.vue';
 
 export default {
+    components: {
+        CatalogComponent,
+    },
     props: {
-        maps: {
-        type: Array,
-        required: true,
-        },
+        // props...
     },
     // data, methods...
     data: () => ({
@@ -118,19 +96,7 @@ export default {
         icon2:require('@/assets/images/world-icon.png'),
         icon3:require('@/assets/images/location-pin-icon.png'),
         mapView:require('@/assets/images/map-view.jpg')
-    }),
-    methods: {
-        ...mapActions(['fetchDatasets']),
-        goToMapView(pk) {
-            const selectedMap = this.maps.find(map => map.pk === pk);
-            this.$store.commit('setSelectedMap', selectedMap);
-            this.fetchDatasets();
-            this.$router.push({ name: 'Map' });
-        },
-        openDetails(detailUrl) {
-        window.open(`${detailUrl}/metadata_detail`, '_blank');
-        },
-    },
+    })
 };
 </script>
 
@@ -145,12 +111,6 @@ a {
 }
 .v-card-subtitle{
     opacity: 1;
-}
-
-.map-thumbnail {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
 }
 
 .catalog-container {

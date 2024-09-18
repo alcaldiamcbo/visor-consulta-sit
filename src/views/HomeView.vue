@@ -1,5 +1,5 @@
 <template>
-  <CatalogComponent />
+  <MapCatalog />
   <v-footer app class="d-flex flex-column pa-0 ma-0 bg-primary on-primary">
     <v-container fluid>
       <v-row justify="center" no-gutters>
@@ -11,12 +11,12 @@
 
 <script>
 import { defineComponent } from 'vue';
-import CatalogComponent from '@/components/CatalogComponent.vue';
+import MapCatalog from '@/components/MapCatalog.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    CatalogComponent,
+    MapCatalog,
   },
 });
 </script>

@@ -1,8 +1,8 @@
 <template>
-	<div id="catalog" class="catalog-container"  v-if="!loading">
+	<div id="catalog" class="inner-catalog-container"  v-if="!loading">
 		<v-row justify="center">
 			<v-col cols="12" md="4">
-				<v-card class="mx-auto card-fixed-actions" width="400" variant="tonal" color="primary" :subtitle="featuredMap.raw_abstract">
+				<v-card class="mx-auto card-fixed-actions rounded-xl pa-5 custom-height" width="500" :subtitle="featuredMap.raw_abstract">
 					<template v-slot:prepend>
 						<v-icon :class="['mdi', 'mdi-earth']"></v-icon>
 					</template>
@@ -20,7 +20,7 @@
 				</v-card>
 			</v-col>
 		</v-row>
-		<v-row justify="center">
+		<!--v-row justify="center">
 			<v-col cols="12" md="2" v-for="map in allMaps" :key="map.pk" class="d-flex justify-center">
 				<v-card class="mx-auto card-fixed-actions" width="250" variant="tonal" color="blue-grey">
 					<v-img height="100px" :src="map.thumbnail_url" cover></v-img>
@@ -34,9 +34,9 @@
 					</v-card-actions>
 				</v-card>
 			</v-col>
-		</v-row>
+		</v-row-->
 	</div>
-	<div v-else class="catalog-container">
+	<div v-else class="inner-catalog-container">
 		<v-row justify="center">
 			<v-col cols="12" class="d-flex justify-center">
 				<v-progress-circular indeterminate :size="70" color="primary"></v-progress-circular>
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style scoped>
-.catalog-container {
+.inner-catalog-container {
 	position: relative;
 	width: 100%;
 }
@@ -93,5 +93,9 @@ export default {
 
 .wrap-text {
 	white-space: normal;
+}
+
+.custom-height {
+  height: 450px; /* Adjust the height as needed */
 }
 </style>

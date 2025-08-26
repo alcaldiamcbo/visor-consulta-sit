@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar class="bg-secondary" :elevation="0" density="compact">
+    <v-app-bar class="bg-white" :elevation="0" density="compact">
       <v-img :src="logo" max-height="35" max-width="150" class="mr-0"></v-img>
       <v-app-bar-title>{{ title }}<strong>{{ subtitle }}</strong></v-app-bar-title>
 
@@ -22,9 +22,9 @@
 export default {
   data() {
     return {
-      logo: require('@/assets/alcaldia-de-maracaibo-logo-web.png'), // Add your logo here
+      logo: require('@/assets/alcaldia-bolivariana-de-maracaibo-logo-web.png'), // Add your logo here
       title: 'Visor Geográfico',
-      subtitle: ' | Alcaldía de Maracaibo'  // Change the title of the app
+      subtitle: ' | Alcaldía Bolivariana de Maracaibo'  // Change the title of the app
     };
   },
 };

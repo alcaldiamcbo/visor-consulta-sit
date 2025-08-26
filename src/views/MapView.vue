@@ -43,8 +43,8 @@ export default {
             session: {
                 name: 'Sistema de Información Territorial - SIT',
                 site: 'Visor de Mapas | Consulta Ciudadana',
-                details: 'Alcaldía de Maracaibo - Centro de Procesamiento Urbano (CPU)',
-                logoPath: require('@/assets/alcaldia-de-maracaibo-logo-web.png'),
+                details: 'Alcaldía Bolivariana de Maracaibo - Centro de Procesamiento Urbano (CPU)',
+                logoPath: require('@/assets/alcaldia-bolivariana-de-maracaibo-logo-web.png'),
                 // map name fetched from GeoNode API
                 map: 'Ordenanza de Zonificación Urbana',
 

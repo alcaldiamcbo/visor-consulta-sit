@@ -69,10 +69,10 @@
                 </v-col>
             </v-row>
         </div>
-        <v-footer fixed class="pa-2 bg-primary on-primary app-footer">
+        <v-footer fixed class="pa-2 bg-accent on-primary app-footer">
             <v-container fluid>
                 <v-row justify="center" no-gutters>
-                <p>&copy; {{ new Date().getFullYear() }} | <strong><a href="https://www.geostudio.com.co/"> GeoStudio </a></strong> | Alcaldía de Maracaibo</p>
+                <p>&copy; {{ new Date().getFullYear() }} | <strong><a href="https://www.geostudio.com.co/"> GeoStudio </a></strong> | Alcaldía Bolivariana de Maracaibo</p>
                 </v-row>
             </v-container>
         </v-footer>
@@ -91,11 +91,11 @@ export default {
     },
     // data, methods...
     data: () => ({
-        image: require('@/assets/images/header-background.jpg'),
+        image: require('@/assets/images/header-background-v2.jpg'),
         icon1:require('@/assets/images/map-icon.png'),
         icon2:require('@/assets/images/world-icon.png'),
         icon3:require('@/assets/images/location-pin-icon.png'),
-        mapView:require('@/assets/images/map-view.jpg')
+        mapView:require('@/assets/images/map-view-v2.jpg')
     })
 };
 </script>
@@ -119,7 +119,7 @@ a {
     grid-template-columns: 1fr 80% 1fr;
     /*grid-template-rows: 1fr repeat(5) 50px;*/
     grid-gap: 10px;
-    background-image: url('@/assets/images/header-background.jpg');
+    background-image: url('@/assets/images/header-background-v2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 600px;

@@ -26,7 +26,7 @@ export default createVuetify(
     },
     theme: {
       options: { customProperties: true }, // This allows you to use the defined colors as CSS variables
-      defaultTheme: 'maracaibo',
+      defaultTheme: 'maracaiboV2',
       themes: {
         maracaibo: {
           dark: false,
@@ -35,6 +35,17 @@ export default createVuetify(
             secondary: '#F2F2F2',
             accent: '#04BF55',
             error: '#F2BD1D',
+            'secondary-darken-1': '#404040',
+          },
+        },
+        maracaiboV2: {
+          dark: false,
+          colors: {
+            primary: '#cf3339',
+            secondary: '#F2F2F2',
+            accent: '#00205c',
+            error: '#FF5F00',
+            white: '#FFFFFF',
             'secondary-darken-1': '#404040',
           },
         }

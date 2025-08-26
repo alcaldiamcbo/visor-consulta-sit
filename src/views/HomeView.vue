@@ -1,9 +1,9 @@
 <template>
   <MapCatalog />
-  <v-footer app class="d-flex flex-column pa-0 ma-0 bg-primary on-primary">
+  <v-footer app class="d-flex flex-column pa-0 ma-0 bg-accent on-primary">
     <v-container fluid>
       <v-row justify="center" no-gutters>
-        <p>&copy; {{ new Date().getFullYear() }} | <strong><a href="https://www.geostudio.com.co/"> GeoStudio </a></strong> | Alcaldía de Maracaibo</p>
+        <p>&copy; {{ new Date().getFullYear() }} | <strong><a href="https://www.geostudio.com.co/"> GeoStudio </a></strong> | Alcaldía Bolivariana de Maracaibo</p>
       </v-row>
     </v-container>
   </v-footer>
